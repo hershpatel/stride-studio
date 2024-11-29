@@ -18,6 +18,11 @@ db.sqlite
 /out/
 next-env.d.ts
 
+# drizzle
+!drizzle/migrations/
+drizzle/.DS_Store
+drizzle/*/.DS_Store
+
 # production
 /build
 
