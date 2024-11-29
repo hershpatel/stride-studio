@@ -1,6 +1,6 @@
 {
-  "id": "bbea161c-58e6-4cff-bcf2-24f2fbadd373",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "b3861604-88a8-453d-ba8d-aff393656c7b",
+  "prevId": "bbea161c-58e6-4cff-bcf2-24f2fbadd373",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -58,6 +58,18 @@
         },
         "scope": {
           "name": "scope",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "id_token": {
+          "name": "id_token",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "session_state": {
+          "name": "session_state",
           "type": "varchar(255)",
           "primaryKey": false,
           "notNull": false

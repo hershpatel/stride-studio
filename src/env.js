@@ -12,6 +12,10 @@ export const env = createEnv({
         ? z.string()
         : z.string().optional(),
     DATABASE_URL: z.string().url(),
+    STRAVA_CLIENT_ID: z.string(),
+    STRAVA_ACCESS_TOKEN: z.string(),
+    STRAVA_CLIENT_SECRET: z.string(),
+    STRAVA_REFRESH_TOKEN: z.string(),
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
@@ -33,6 +37,10 @@ export const env = createEnv({
   runtimeEnv: {
     AUTH_SECRET: process.env.AUTH_SECRET,
     DATABASE_URL: process.env.DATABASE_URL,
+    STRAVA_CLIENT_ID: process.env.STRAVA_CLIENT_ID,
+    STRAVA_ACCESS_TOKEN: process.env.STRAVA_ACCESS_TOKEN,
+    STRAVA_CLIENT_SECRET: process.env.STRAVA_CLIENT_SECRET,
+    STRAVA_REFRESH_TOKEN: process.env.STRAVA_REFRESH_TOKEN,
     NODE_ENV: process.env.NODE_ENV,
   },
   /**
