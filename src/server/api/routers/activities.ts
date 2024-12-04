@@ -6,6 +6,6 @@ export const activitiesRouter = createTRPCRouter({
     .input(z.object({ athleteId: z.string() }))
     .output(z.array(z.string()))
     .query(async ({ ctx, input }) => {
-      return ["activity1", "activity2"];
+      return [];
     }),
 });
