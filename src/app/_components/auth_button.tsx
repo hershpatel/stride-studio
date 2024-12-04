@@ -1,7 +1,12 @@
 import Link from "next/link";
+import type { Session } from "next-auth";
 import { ConnectWithStravaButton } from "./strava_signin_button";
 
-export function AuthButton({ session }: { session: any }) {
+interface AuthButtonProps {
+  session: Session | null;
+}
+
+export function AuthButton({ session }: AuthButtonProps) {
   return (
     <>
       {!session ? (
