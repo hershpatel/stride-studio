@@ -9,8 +9,8 @@ export default async function Home() {
   const session = await auth();
 
   const activities = session?.user
-    ? await api.activities.getByAthleteId({
-        athleteId: session.user.id,
+    ? await api.activities.getRecentActivities({
+        userId: session.user.id,
       })
     : null;
 

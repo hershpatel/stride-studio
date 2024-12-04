@@ -37,6 +37,12 @@ export const authConfig = {
     Strava({
       clientId: env.STRAVA_CLIENT_ID,
       clientSecret: env.STRAVA_CLIENT_SECRET,
+      authorization: {
+        params: {
+          scope: 'read,activity:read_all,profile:read_all',
+          prompt: 'consent'
+        }
+      }
     }),
   ],
   adapter: DrizzleAdapter(db, {
