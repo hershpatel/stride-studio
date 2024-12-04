@@ -1,3 +1,5 @@
+import { StravaActivity } from "./model";
+
 const STRAVA_API_BASE = "https://www.strava.com/api/v3";
 
 export class StravaClient {
@@ -19,7 +21,7 @@ export class StravaClient {
       throw new Error(`Strava API error: ${response.statusText}`);
     }
 
-    return response.json();
+    return response.json() as Promise<unknown>;
   }
 
   static async listAthleteActivities(
@@ -30,7 +32,7 @@ export class StravaClient {
       page?: number;
       per_page?: number;
     }
-  ) {
-    return this.fetch("/athlete/activities", accessToken, params as Record<string, string>);
+  ): Promise<StravaActivity[]> {
+    return this.fetch("/athlete/activities", accessToken, params as Record<string, string>) as Promise<StravaActivity[]>;
   }
 }

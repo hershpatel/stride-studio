@@ -2,6 +2,7 @@ import { z } from "zod";
 import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
 import { getAccountByUserId } from "~/server/db/query";
 import { StravaClient } from "../strava/client";
+import { StravaActivity } from "../strava/model";
 
 export const activitiesRouter = createTRPCRouter({
   getRecentActivities: protectedProcedure
@@ -10,7 +11,7 @@ export const activitiesRouter = createTRPCRouter({
       per_page: z.number().default(10)
     }))
     .output(z.array(z.string()))
-    .query(async ({ ctx, input }) => {
+    .query(async ({ input }) => {
       const account = await getAccountByUserId(input.userId);
 
       if (!account?.access_token) {
@@ -21,6 +22,6 @@ export const activitiesRouter = createTRPCRouter({
         per_page: input.per_page,
       });
 
-      return activities.map((activity: any) => activity.name);
+      return activities.map((activity: StravaActivity) => activity.name);
     }),
 });
