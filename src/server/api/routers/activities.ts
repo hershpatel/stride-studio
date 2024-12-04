@@ -2,17 +2,16 @@ import { z } from "zod";
 import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
 import { getAccountByUserId } from "~/server/db/query";
 import { StravaClient } from "../strava/client";
-import { StravaActivity } from "../strava/model";
+import { stravaActivitySchema } from "../strava/model";
 
 export const activitiesRouter = createTRPCRouter({
   getRecentActivities: protectedProcedure
     .input(z.object({ 
-      userId: z.string(),
       per_page: z.number().default(10)
     }))
-    .output(z.array(z.string()))
-    .query(async ({ input }) => {
-      const account = await getAccountByUserId(input.userId);
+    .output(z.array(stravaActivitySchema))
+    .query(async ({ ctx, input }) => {
+      const account = await getAccountByUserId(ctx.session.user.id);
 
       if (!account?.access_token) {
         throw new Error("User is not connected to Strava");
@@ -22,6 +21,6 @@ export const activitiesRouter = createTRPCRouter({
         per_page: input.per_page,
       });
 
-      return activities.map((activity: StravaActivity) => activity.name);
-    }),
+      return activities;
+    })
 });

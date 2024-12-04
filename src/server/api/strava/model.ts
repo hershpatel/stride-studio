@@ -1,11 +1,14 @@
+import { z } from "zod";
 
-export interface StravaActivity {
-  id: number;
-  name: string;
-  distance: number;
-  moving_time: number;
-  elapsed_time: number;
-  type: string;
-  start_date: string;
-  start_date_local: string;
-}
+export const stravaActivitySchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  distance: z.number(),
+  moving_time: z.number(),
+  elapsed_time: z.number(),
+  type: z.string(),
+  start_date: z.string(),
+  start_date_local: z.string(),
+});
+
+export type StravaActivity = z.infer<typeof stravaActivitySchema>;

@@ -9,9 +9,7 @@ export default async function Home() {
   const session = await auth();
 
   const activities = session?.user
-    ? await api.activities.getRecentActivities({
-        userId: session.user.id,
-      })
+    ? await api.activities.getRecentActivities({})
     : null;
 
   return (
@@ -46,7 +44,7 @@ export default async function Home() {
                             className="bg-white/10 p-4 rounded-lg shadow-lg hover:bg-white/20 transition-all w-full max-w-md"
                           >
                             <div className="text-center">
-                              {activity}
+                              {activity.name}
                             </div>
                           </div>
                         ))}
